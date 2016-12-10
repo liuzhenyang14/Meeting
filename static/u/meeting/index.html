@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="/css/base.css" rel="stylesheet" type="text/css" />
+    <link href="/css/ticket.css" rel="stylesheet" type="text/css" />
+	<title>会佳</title>
+	<link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+	
+</head>
+<body>
+<div id="wrap">
+    <header></header>
+
+    <div class="theme" id="theme"></div>
+
+    <div id="mainbody"></div>
+
+</div>
+
+<ul class="nav nav-pills navbar-fixed-bottom">
+	<li><a href="http://www.benghuai.com/">崩坏学园</a></li>
+	<li><a href="#">加入会议</a></li>
+	<li><a href="#">收藏会议</a></li>
+	<li><a href="#">其它</a></li>
+</ul>
+
+<script type="text/template" id="tpl-header">
+    <img class="header-img" src="{{ conf.image }} " />
+</script>
+
+<script type="text/template" id="tpl-theme">
+        {{ conf.name }}
+</script>
+
+<script type="text/template" id="tpl-mainbody">
+
+    <div class="ticket-wrapper">
+        <b>{{ conf.date }}</b>
+    </div>
+    <div class="ticket-wrapper">
+        <b>{{ conf.address }}</b>
+    </div>
+    <div class="ticket-wrapper">
+        <img class="header-img" src="{{ conf.location }} " />
+    </div>
+    <div class="container" style="padding: 100px 50px 10px;" >
+		<a href = " {{ conf.web }} "><button type="button" class="btn btn-default"  
+			data-container="body" data-toggle="popover" data-placement="bottom" 
+			data-content="">
+			网站
+		</button></a>
+		<button type="button" class="btn btn-primary"  
+			data-container="body" data-toggle="popover" data-placement="bottom" 
+			data-content="{% if conf.phone %}电话：{{conf.phone}}{% endif %}	&#10;		
+			{% if conf.fax %}传真：{{conf.fax}}{% endif %}			
+			{% if conf.email %}邮箱：{{conf.email}}{% endif %}">
+			联系方式
+		</button>
+		<button type="button" class="btn btn-success"
+			data-container="body" data-toggle="popover" data-placement="bottom" 
+			data-content="{% if conf.weibo %}微博：{{conf.weibo}}{% endif %}
+			{% if conf.weixin %}微信：{{conf.weixin}}{% endif %}
+			{% if conf.qq %}QQ：{{conf.qq}}{% endif %}">
+			社交媒体
+		</button>
+		<button type="button" class="btn btn-warning"
+			data-container="body" data-toggle="popover" data-placement="bottom" 
+			data-content="">
+			报名
+		</button>
+	</div>
+    
+    <div class="ticket-wrapper">
+        <b>{{ conf.desc }}</b>
+    </div>
+    
+</script>
+
+<script src="/3rd/jquery.js"></script>
+<script src="/3rd/swig.js"></script>
+<script src="/js/weixin_lib.js"></script>
+<script src="/js/base.js"></script>
+<script src="/js/ticket.js"></script>
+<script src="https://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+<script>
+    var locals = {};
+    var render = function () {
+        $('header').html(swig.render($('#tpl-header').html(), {locals: locals}));
+        $('#theme').html(swig.render($('#tpl-theme').html(), {locals: locals}));
+        $('#mainbody').html(swig.render($('#tpl-mainbody').html(), {locals: locals}));	
+		$("[data-toggle='popover']").popover();
+    };
+    $(function () {
+        render();
+        api.get('/api/u/meeting/detail', {confid: urlParam.confid}, function (data) {
+            locals.conf = data;					
+            render();
+        }, dftFail);
+		
+    });
+</script>	
+</body>
+</html>
