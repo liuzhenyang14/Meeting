@@ -51,7 +51,7 @@ class MeetingDetail(APIView):
         qq = datas['data']['detail']['qq']
         weibo = datas['data']['detail']['weibo']
         desc = datas['data']['detail']['desc']
-        mytype = datas['data']['detail']['privateType']
+        type = datas['data']['detail']['privateType']
         test = {
             'name': name,
             'address': address,
