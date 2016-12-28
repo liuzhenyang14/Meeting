@@ -263,3 +263,5 @@ class favoriteConfListHandler(WeChatHandler):
             return self.reply_news(result)
         else:
             return self.reply_text("请先绑定")
+
+
