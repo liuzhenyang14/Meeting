@@ -100,7 +100,8 @@ class GetAllConfListHandler(WeChatHandler):
                     result.append({
                         'Title': conflist['data'][i]['name'],
                         'PicUrl': 'http://60.205.137.139/adminweb/' + conflist['data'][i]['image'],
-                        'Url': 'http://m2.huiplus.com.cn/app/#/confinfo/'+str(conflist['data'][i]['id'])
+                        # 'Url': 'http://m2.huiplus.com.cn/app/#/confinfo/'+str(conflist['data'][i]['id'])
+                        'Url': 'http://59.66.138.67/u/meeting/index.html?confid=' + str(conflist['data'][i]['id'])
                     })
                 result.append({
                     'Title': '输入“显示更多”，查看更多会议'
@@ -110,7 +111,8 @@ class GetAllConfListHandler(WeChatHandler):
                     result.append({
                         'Title': conflist['data'][i]['name'],
                         'PicUrl': 'http://60.205.137.139/adminweb/' + conflist['data'][i]['image'],
-                        'Url': 'http://m2.huiplus.com.cn/app/#/confinfo/'+str(conflist['data'][i]['id'])
+                        # 'Url': 'http://m2.huiplus.com.cn/app/#/confinfo/'+str(conflist['data'][i]['id'])
+                        'Url': 'http://59.66.138.67/u/meeting/index.html?confid=' + str(conflist['data'][i]['id'])
                     })
                 result.append({
                     'Title': '没有更多会议了'
@@ -140,7 +142,8 @@ class ShowMoreConfHandler(WeChatHandler):
                     result.append({
                         'Title': conflist['data'][i]['name'],
                         'PicUrl': 'http://60.205.137.139/adminweb/' + conflist['data'][i]['image'],
-                        'Url': 'http://m2.huiplus.com.cn/app/#/confinfo/'+str(conflist['data'][i]['id'])
+                        # 'Url': 'http://m2.huiplus.com.cn/app/#/confinfo/'+str(conflist['data'][i]['id'])
+                        'Url': 'http://59.66.138.67/u/meeting/index.html?confid=' + str(conflist['data'][i]['id'])
                     })
                 result.append({
                     'Title': '输入“显示更多”，查看更多会议'
@@ -153,7 +156,8 @@ class ShowMoreConfHandler(WeChatHandler):
                     result.append({
                         'Title': conflist['data'][i]['name'],
                         'PicUrl': 'http://60.205.137.139/adminweb/' + conflist['data'][i]['image'],
-                        'Url': 'http://m2.huiplus.com.cn/app/#/confinfo/'+str(conflist['data'][i]['id'])
+                        # 'Url': 'http://m2.huiplus.com.cn/app/#/confinfo/'+str(conflist['data'][i]['id'])
+                        'Url': 'http://59.66.138.67/u/meeting/index.html?confid=confid=' + str(conflist['data'][i]['id'])
                     })
                 result.append({
                     'Title': '没有更多会议了'
@@ -181,7 +185,8 @@ class GetComingConfListHandler(WeChatHandler):
                     result.append({
                         'Title': conflist['data'][i]['name'],
                         'PicUrl': 'http://60.205.137.139/adminweb/' + conflist['data'][i]['image'],
-                        'Url': 'http://m2.huiplus.com.cn/app/#/confinfo/'+str(conflist['data'][i]['id'])
+                        # 'Url': 'http://m2.huiplus.com.cn/app/#/confinfo/'+str(conflist['data'][i]['id'])
+                        'Url': 'http://59.66.138.67/u/meeting/index.html?confid=' + str(conflist['data'][i]['id']) 
                     })
             else:
                 result = []
@@ -189,7 +194,8 @@ class GetComingConfListHandler(WeChatHandler):
                     result.append({
                         'Title': conflist['data'][i]['name'],
                         'PicUrl': 'http://60.205.137.139/adminweb/' + conflist['data'][i]['image'],
-                        'Url': 'http://m2.huiplus.com.cn/app/#/confinfo/'+str(conflist['data'][i]['id'])
+                        # 'Url': 'http://m2.huiplus.com.cn/app/#/confinfo/'+str(conflist['data'][i]['id'])
+                        'Url': 'http://59.66.138.67/u/meeting/index.html?confid=' + str(conflist['data'][i]['id'])
                     })
             return self.reply_news(result)
         else:
@@ -216,7 +222,8 @@ class SearchConfListHandler(WeChatHandler):
                     result.append({
                         'Title': conflist['data'][i]['name'],
                         'PicUrl': 'http://60.205.137.139/adminweb/' + conflist['data'][i]['image'],
-                        'Url': 'http://m2.huiplus.com.cn/app/#/confinfo/'+str(conflist['data'][i]['id'])
+                        # 'Url': 'http://m2.huiplus.com.cn/app/#/confinfo/'+str(conflist['data'][i]['id'])
+                        'Url': 'http://59.66.138.67/u/meeting/index.html?confid=' + str(conflist['data'][i]['id'])
                     })
             else:
                 result = []
@@ -224,7 +231,8 @@ class SearchConfListHandler(WeChatHandler):
                     result.append({
                         'Title': conflist['data'][i]['name'],
                         'PicUrl': 'http://60.205.137.139/adminweb/' + conflist['data'][i]['image'],
-                        'Url': 'http://m2.huiplus.com.cn/app/#/confinfo/'+str(conflist['data'][i]['id'])
+                        # 'Url': 'http://m2.huiplus.com.cn/app/#/confinfo/'+str(conflist['data'][i]['id'])
+                        'Url': 'http://59.66.138.67/u/meeting/index.html?confid=' + str(conflist['data'][i]['id']) 
                     })
             return self.reply_news(result)
         else:
@@ -237,7 +245,7 @@ class favoriteConfListHandler(WeChatHandler):
     def handle(self):
         user = UserLogin.objects.filter(unionId = self.input['FromUserName'])
         if user:
-            url = 'http://60.205.137.139/adminweb/REST/API-V2/favoriteConfList?userid='  +'219'+  '&page=1&page_size=3'
+            url = 'http://60.205.137.139/adminweb/REST/API-V2/favoriteConfList?userid='  +str(user[0].user_id)+  '&page=1&page_size=3'
             req = urllib.request.urlopen(url)
             content = req.read().decode('utf-8')
             conflist = json.loads(content)
@@ -250,6 +258,7 @@ class favoriteConfListHandler(WeChatHandler):
                     'Title': conflist['data'][i]['name'],
                     'PicUrl': 'http://60.205.137.139/adminweb/' + conflist['data'][i]['image'],
                     'Url': 'http://m2.huiplus.com.cn/app/#/confinfo/'+str(conflist['data'][i]['id'])
+                    
                 })
             return self.reply_news(result)
         else:
