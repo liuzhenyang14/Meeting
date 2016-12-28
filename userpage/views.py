@@ -12,6 +12,7 @@ import json
 
 class JoinConf(APIView):
     def get(self):
+
     	self.check_input('user_id', 'confid', 'type')
     	result = joinconf(self.input['user_id'], self.input['confid'], self.input['type'])
     	return result
@@ -67,6 +68,7 @@ class MeetingDetail(APIView):
         qq = datas['data']['detail']['qq']
         weibo = datas['data']['detail']['weibo']
         desc = datas['data']['detail']['desc']
+        type = datas['data']['detail']['privateType']
         test = {
             'name': name,
             'address': address,
@@ -80,5 +82,7 @@ class MeetingDetail(APIView):
             'qq':qq,
             'weibo':weibo,
             'desc':desc,
+            'type':type,
+            'userid':self.input['user_id'],
         }
         return(test)

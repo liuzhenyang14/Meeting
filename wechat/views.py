@@ -11,7 +11,7 @@ class CustomWeChatView(WeChatView):
     lib = WeChatLib(WECHAT_TOKEN, WECHAT_APPID, WECHAT_SECRET)
 
     handlers = [
-        BookEmptyHandler, BindAccountHandler, GetAllConfListHandler, ShowMoreConfHandler, GetComingConfListHandler, SearchConfListHandler, favoriteConfListHandler
+        BookEmptyHandler, BindAccountHandler, GetAllConfListHandler, ShowMoreConfHandler, GetComingConfListHandler, SearchConfListHandler, favoriteConfListHandler, confRemindHandler
     ]
     error_message_handler = ErrorHandler
     default_handler = DefaultHandler
@@ -20,10 +20,10 @@ class CustomWeChatView(WeChatView):
         'book_what': 'SERVICE_BOOK_WHAT',
         'get_ticket': 'SERVICE_GET_TICKET',
         'account_bind': 'SERVICE_BIND',
-        'help': 'SERVICE_HELP',
+        'remind': 'SERVICE_REMIND',
         'book_empty': 'BOOKING_EMPTY',
         'book_header': 'BOOKING_ACTIVITY_',
-        'my_meeting': 'MY_MEETING'
+        'my_meeting': 'MY_MEETING' 
     }
 
     menu = {
@@ -38,8 +38,8 @@ class CustomWeChatView(WeChatView):
                     },
                     {
                         "type": "click",
-                        "name": "帮助",
-                        "key": event_keys['help'],
+                        "name": "提醒",
+                        "key": event_keys['remind'],
                     }
                 ]
             },
