@@ -1,0 +1,364 @@
+#lightbulb {
+  font-size: 100px;
+  display: block;
+  text-align: center;
+}
+
+h1 {
+  padding: 0;
+  margin: 10px 0;
+}
+
+.chat-user-avatar {
+  font-size: 40px;
+  background: #ccc;
+  padding: 5px 10px;
+}
+
+.feature-icon {
+  font-size: 44px;
+  padding: 0;
+  line-height: 68px;
+  width: 72px;
+  text-align: center;
+  opacity: .8;
+  border: 3px solid;
+  border-radius: 200px;
+  height: 72px;
+  margin-bottom: 20px;
+}
+
+.feature-icon.fa-gamepad {
+  line-height: 60px;
+}
+
+.feature-icon.fa-tachometer {
+  line-height: 60px;
+}
+
+.app-content-loading {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  position: relative;
+}
+
+.loading-spinner {
+  position: absolute;
+  font-size: 50px;
+  left: 50%;
+  top: 50%;
+  margin-left: -25px;
+  margin-top: -25px;
+}
+
+.carousel-example-content {
+  position: absolute;
+  font-size: 50px;
+  line-height: 50px;
+  width: 100%;
+  text-align: center;
+  top: 50%;
+  margin-top: -50px;
+}
+
+.carousel-item {
+  display: block;
+  color: #444;
+  background: #f4f4f4;
+  box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+  -webkit-transition: opacity 0.3s;
+  -moz-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  opacity: 1;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+.carousel {
+  padding: 20px;
+  overflow: visible;
+}
+
+.carousel-inner {
+  position: relative;
+  overflow: visible;
+}
+
+.carousel>.item, .carousel-item {
+  top: 0;
+  left: 0;
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+.carousel-item {
+  -webkit-transition: -webkit-transform 500ms;
+  -moz-transition: -moz-transform 500ms;
+  transition: transform 500ms;
+}
+
+[drag-to-dismiss]{
+  transform: translate(0,0); /* NOTE: this is required to prevent mobile webkit issues */ 
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: opacity 300ms, -webkit-transform 300ms;
+  -moz-transition: opacity 300ms, -moz-transform 300ms;
+  transition: opacity 300ms, transform 300ms;
+  opacity: 1;
+}
+
+.notices-container {
+  overflow-x: hidden;
+}
+
+.dismiss {
+  -webkit-transition: opacity 300ms, -webkit-transform 300ms;
+  -moz-transition: opacity 300ms, -moz-transform 300ms;
+  transition: opacity 300ms, transform 300ms;
+  opacity: 0.5;
+}
+
+.dismitted {
+  -webkit-transition: opacity 300ms, -webkit-transform 300ms;
+  -moz-transition: opacity 300ms, -moz-transform 300ms;
+  transition: opacity 300ms, transform 300ms;
+  opacity: 0;
+}
+
+.list-group-item-home {
+  padding: 20px; 
+}
+
+pre {
+  text-align: left !important;
+}
+
+input.scrollable-header {
+  border-bottom: 3px solid #ccc;
+}
+
+.toucharea {width: 100%; height: 100%;}
+
+.datetimeTab{position:relative;-webkit-box-sizing:border-box;width:100%;padding:0 2em; height:65px;overflow:hidden;margin-bottom:15px;margin-top:-10px;background: whitesmoke;margin-bottom: 0; border: 0 none; border-bottom: 1px solid #ddd;}
+.datetimeTab ul li{display:none;}
+.datetimeTab ul li.on{display:inline;font-weight:bold;font-size:17px;height:36px;line-height:36px;}
+.datetimeTab ul li.arrow{display:inline; background-color: whitesmoke; border-radius: 0px;}
+.datetimeTab .arrow_left{left:-5px;background:url(img/arrow_left.png) center center no-repeat;background-size:1.6em;}
+.datetimeTab .arrow_right{right:-5px;background:url(img/arrow_right.png) center center no-repeat;background-size:1.6em;}
+
+.list-group-bottom{margin-bottom: 55px;}
+
+.list-a {
+    margin: 0px;
+    display: block;
+}
+
+.list-a-p {
+    white-space: nowrap;
+	margin-bottom: 0px;
+}
+
+.list-photo {
+    width: 60px;
+    height: 60px;
+    float: left;
+    margin-right: 8px;
+}
+
+.list-i {
+    margin-right: 8px;
+	margin-top: 21px;
+}
+
+.fa-star-h:before {
+    content: "\f006";
+	color: #ec663d;
+}
+
+.fa-star-s:before {
+	content: "\f005";
+	color: #ec663d;
+}
+
+div.beigebg {
+	background: whitesmoke;
+}
+
+div.whitebg {
+	background: white;
+}
+
+div.blackback{
+	background: #34495e;
+}
+
+div.blueback{
+	background: #2980b9;
+}
+
+div.list-center{
+	text-align:center;
+}
+
+.menu{
+	background: #34495e;
+	background-color: #34495e;
+	color:white;
+	border-bottom: 0px solid #ddd;
+}
+
+a.menu{
+	background: #34495e;
+	color:white;
+	border-bottom: 0px solid #ddd;
+}
+
+.menu.active, .menu.active:focus{
+	background: #2e4054;
+	color:white;
+    border-color: #2e4054;
+}
+
+.menu:focus{background: #2e4054;color:white;}
+a.menu:hover{background: #304459;color:white;}
+.menu:hover{background: #304459;color:white;}
+
+.whitetext{
+	color: white;
+}
+
+.greentext{
+	color: green;
+}
+
+.redtext{
+	color: red;
+}
+
+.companylogo {
+    height: 60px;
+    margin-right: 8px;
+}
+
+span.listcmpname{
+	font-size: 15px;
+	font-weight: bold;
+	line-height: 1.5;
+}
+
+.speaker-photo {
+    width: 100px;
+    height: 100px;
+    float: center;
+    margin-right: 8px;
+}
+
+.confinfo-photo {
+	width: 320px;
+	height: 240px;
+	clear: both;
+	display: block;
+	margin:auto;
+}
+
+.confname{
+    font-size: 18px;
+	line-height: 30px;
+	padding: 20px 10px;
+}
+
+.confInfo{
+	color: white;
+	padding: 0px 0px 20px 10px;
+}
+
+span.titletext{
+	font-size: 15px;
+	font-weight: bold;
+	line-height: 1.5;
+}
+
+span.ConfName{
+	font-size: 15px;
+	font-weight: bold;
+	line-height: 1.5;
+	float: center;
+}
+
+span.labeltext{
+	color: white;
+	background: #96999f;
+	padding: 2px 8px;
+	font-size: 12px;
+	text-align: left;
+}
+
+p.text{
+	color: black;
+	margin-top: 8px;
+	margin-bottom: 0px;
+}
+
+span.membername{
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 1.5;
+}
+
+span.listhead{
+	font-size: 14px;
+	font-weight: bold;
+	padding: 20px;
+	line-height: 3;
+}
+
+span.contenttitle{
+	font-weight: bold;
+	padding: 18px;
+}
+
+span.itemtitle{
+	font-weight: bold;
+	padding: 10px;
+}
+
+div.content{
+	padding: 5px;
+	
+}
+
+.arrow{
+	width: 15px;
+    height: 15px;
+	cursor: pointer;
+}
+
+img.download{
+	width: 12px;
+    height: 12px;
+}
+span.download{
+	font-size: 14px;
+	color: white;
+	text-transform: none;
+}
+
+.blacktext{
+	color: black;
+}
+
