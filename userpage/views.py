@@ -11,21 +11,25 @@ import time
 import json
 
 class JoinConf(APIView):
-    def post(self):
-    	self.check_input('user_id', 'confid', 'type', 'code')
-    	result = joinconf(self.input['user_id'], self.input['confid'], self.input['type'], self.input['code'])
-    	return result
+    def get(self):
+        url = "http://60.205.137.139/adminweb/REST/API-V2/confInfo?confid=" + self.input['confid']
+        req = urllib.request.urlopen(url)
+        content = req.read().decode('utf-8')
+        datas = json.loads(content)
+        type = datas['data']['detail']['privateType']
+        result = joinconf(self.input['user_id'], self.input['confid'], type)
+        return result
 
 
-def joinconf(userid, confid, type, code):
-	urlvalue = urllib.parse.urlencode({"userid": userid, "confid": confid, "type": type, "code": code})
-	postdata = (""), encode('utf-8')
-	url = "http://60.205.137.139/adminweb/REST/APT-V2/joinConf?" + urlvalue
-	request = urllib.request.Request(url.postdata)
-	response = urllib.request.urlopen(request)
-	s = response.read().decode('utf-8')
-	res = json.loads(s)
-	return res
+    def joinconf(userid, confid, type, code):
+        urlvalue = urllib.parse.urlencode({"userid": userid, "confid": confid, "type": type})
+        postdata = ("").encode('utf-8')
+        url = "http://60.205.137.139/adminweb/REST/APT-V2/joinConf?" + urlvalue
+        request = urllib.request.Request(url.postdata)
+        response = urllib.request.urlopen(request)
+        s = response.read().decode('utf-8')
+        res = json.loads(s)
+        return res
 
 
 class MeetingDetail(APIView):
@@ -61,6 +65,7 @@ class MeetingDetail(APIView):
             'qq':qq,
             'weibo':weibo,
             'desc':desc,
-			'mytype':mytype,
+            'type':type,
+            'userid':self.input['user_id'],
         }
         return(test)
