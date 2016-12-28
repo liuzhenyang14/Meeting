@@ -29,8 +29,7 @@
 <script type="text/template" id="tpl-header">  
 <div class="navbar navbar-app navbar-absolute-top blueback">      
 	<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
-	<a class="whitetext" href="http://www.benghuai.com/">崩坏学园&nbsp;</a>
-	<a class="whitetext" href="meeting/pay">加入会议&nbsp;</a>
+	<a class="whitetext" href="pay">加入会议&nbsp;</a>
 	<a class="whitetext" href="http://www.benghuai.com/">收藏会议&nbsp;</a>
 	<a class="whitetext" href="http://www.benghuai.com/">其它</a>
 	</div>
@@ -107,8 +106,7 @@
     };
     $(function () {
         render();
-        api.get('/api/u/ticket/detail', {confid: urlParam.confid}, function (data) {
-			console.log(data);
+        api.get('/api/u/meeting/detail', {confid: urlParam.confid}, function (data) {
             locals.conf = data;					
             render();
         }, dftFail);
