@@ -35,11 +35,6 @@
 	width: 60%;
 	margin: 10% 20%;
 }
-.photo
-{
-	width: 324px;
-	height: 360px;
-}
 </style>
 <body>
 <div id="wrap">
@@ -47,7 +42,7 @@
 
     <div class="theme" id="theme"></div>
 
-    <div id="mainbody" class="scrollable"></div>
+    <div id="mainbody"  class="scrollable"></div>
 
 </div>
 
@@ -61,28 +56,14 @@
 <script type="text/template" id="tpl-mainbody">
 <div class="navbar navbar-app navbar-absolute-top blueback">      
 	<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
-		<div class="whitetext">会议缴费</div>
+	<div class="whitetext">您已经成功加入会议</div>
 	</div>
 </div>
 <div class="paybody">
-	<div class = "jiang"></div>
-	<div class="list-group-item" align = "center">	
-		<span class="titletext">缴费金额</span><br>
-		<p class="text"> {{ conf.money }}<br></p>
-	</div>
-	<div class="list-group-item" align = "center">		
-		<span class="titletext">缴费说明</span><br>
-		<p class="text"> {{ conf.reason }}<br></p>
-		<p></p>		
-    </div>
-	<div class="list-group-item" align = "center">		
-		<span class="titletext">请扫描二维码缴费</span><br>
-		<image src = "/img/pay.jpg" class = "photo">
-		<p></p>		
-    </div>	
-    <div class="navbar blueback navbar-brand bord_radius">      
-		<a href = "paysucess?confid={{conf.id}}"><div class="whitetext" align = "center">缴费成功</div></a>
-	</div>
+	<div class = "jiang"></div>    
+	<a href = "/u/meeting?confid={{conf.id}}">
+		<div class="bluetext" align = "center">点此返回界面</div>
+	</a>
 </div>
 </script>
 
@@ -102,8 +83,8 @@
     };
     $(function () {
         render();
-        api.get('/api/u/meeting/detail/pay', {confid: urlParam.confid}, function (data) { 
-            locals.conf = data;					
+        api.get('/api/u/meeting/detail/paysucess', {paysucess: "True", confid: urlParam.confid}, function (data) { 
+			locals.conf = data;	
             render();
         }, dftFail);
     });	

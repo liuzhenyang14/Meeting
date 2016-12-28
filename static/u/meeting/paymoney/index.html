@@ -35,11 +35,6 @@
 	width: 60%;
 	margin: 10% 20%;
 }
-.photo
-{
-	width: 324px;
-	height: 360px;
-}
 </style>
 <body>
 <div id="wrap">
@@ -61,7 +56,7 @@
 <script type="text/template" id="tpl-mainbody">
 <div class="navbar navbar-app navbar-absolute-top blueback">      
 	<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
-		<div class="whitetext">会议缴费</div>
+	<div class="whitetext">会议缴费</div>
 	</div>
 </div>
 <div class="paybody">
@@ -71,17 +66,15 @@
 		<p class="text"> {{ conf.money }}<br></p>
 	</div>
 	<div class="list-group-item" align = "center">		
-		<span class="titletext">缴费说明</span><br>
-		<p class="text"> {{ conf.reason }}<br></p>
+		<span class="titletext">请扫描二维码缴费</span><br>
+		<image src = "/img/pay.jpg">
 		<p></p>		
     </div>
-	<div class="list-group-item" align = "center">		
-		<span class="titletext">请扫描二维码缴费</span><br>
-		<image src = "/img/pay.jpg" class = "photo">
-		<p></p>		
-    </div>	
+		
     <div class="navbar blueback navbar-brand bord_radius">      
-		<a href = "paysucess?confid={{conf.id}}"><div class="whitetext" align = "center">缴费成功</div></a>
+		<a href = "paymoney?confid={{conf.id}}">
+			<div class="whitetext" align = "center">缴费完成</div>
+		</a>
 	</div>
 </div>
 </script>
@@ -102,7 +95,7 @@
     };
     $(function () {
         render();
-        api.get('/api/u/meeting/detail/pay', {confid: urlParam.confid}, function (data) { 
+        api.get('/api/u/meeting/detail/paymoney', {confid: urlParam.confid}, function (data) {
             locals.conf = data;					
             render();
         }, dftFail);
