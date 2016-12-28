@@ -29,12 +29,7 @@
 <script type="text/template" id="tpl-header">  
 <div class="navbar navbar-app navbar-absolute-top blueback">      
 	<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
-<<<<<<< HEAD
-	<a class="whitetext" href="http://www.benghuai.com/">加入会议&nbsp;</a>
-=======
-	<a class="whitetext" href="http://www.benghuai.com/">崩坏学园&nbsp;</a>
-	<a class="whitetext" href="meeting/pay">加入会议&nbsp;</a>
->>>>>>> d49870ca4ba7b11b18d970ecd1f6f053e131cadc
+	<a class="whitetext" href="pay">加入会议&nbsp;</a>
 	<a class="whitetext" href="http://www.benghuai.com/">收藏会议&nbsp;</a>
 	<a class="whitetext" href="http://www.benghuai.com/">其它</a>
 	</div>
@@ -111,12 +106,7 @@
     };
     $(function () {
         render();
-<<<<<<< HEAD
         api.get('/api/u/meeting/detail', {confid: urlParam.confid}, function (data) {
-=======
-        api.get('/api/u/ticket/detail', {confid: urlParam.confid}, function (data) {
-			console.log(data);
->>>>>>> d49870ca4ba7b11b18d970ecd1f6f053e131cadc
             locals.conf = data;					
             render();
         }, dftFail);

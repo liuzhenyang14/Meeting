@@ -15,7 +15,6 @@ class MeetingDetail(APIView):
         req = urllib.request.urlopen(url)
         content = req.read().decode('utf-8')
         datas = json.loads(content)
-        print(datas)
         name = datas['data']['basic']['name']
         address = datas['data']['detail']['address']
         image = datas['data']['basic']['image']
