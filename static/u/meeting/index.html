@@ -38,10 +38,10 @@
 <div class="navbar navbar-app navbar-absolute-top blueback">      
 	<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
 	{%if conf.inconf == 1%}
-	<a class="whitetext" href="meeting/outmeeting?confid={{conf.id}}&userid={{conf.userid}}"}>退出会议&nbsp;</a>
+	<a class="whitetext" href="outmeeting/index.html?confid={{conf.id}}&userid={{conf.userid}}"}>退出会议&nbsp;</a>
 	{%else%}
-	<a class="whitetext" {%if conf.type == 3%}href="meeting/pay?confid={{conf.id}}&userid={{conf.userid}}"
-		{%else%}href="meeting/paysucess?confid={{conf.id}}&userid={{conf.userid}}"{%endif%}>加入会议&nbsp;</a>
+	<a class="whitetext" {%if conf.type == 0%}href="pay/index.html?confid={{conf.id}}&userid={{conf.userid}}"
+		{%else%}href="paysucess/index.html?confid={{conf.id}}&userid={{conf.userid}}"{%endif%}>加入会议&nbsp;</a>
 	{%endif%}
 	<a class="whitetext" href="http://www.benghuai.com/">收藏会议&nbsp;</a>
 	</div>
@@ -112,8 +112,11 @@
     };
     $(function () {
         render();
-        api.get('/api/u/meeting/detail', {confid: urlParam.confid, user_id: urlParam.userid}, function (data) {
+        api.get('/api/u/meeting', {confid: urlParam.confid, user_id: urlParam.userid}, function (data) {
             locals.conf = data;		
+            console.log(data);
+            locals.conf.id=urlParam.confid;
+            locals.conf.userid=urlParam.userid;
 			locals.conf.desc = data.desc;	
 			locals.conf.inconf = urlParam.in;
             render();

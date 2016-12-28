@@ -11,9 +11,9 @@ __author__ = "Epsirom"
 
 urlpatterns = [
 
-    url(r'^meeting/detail/paysucess?$', JoinConf.as_view()),
-    url(r'^meeting/detail/outmeeting?$', CancelConf.as_view()),
+    url(r'^meeting/paysucess?$', JoinConf.as_view()),
+    url(r'^meeting/outmeeting?$', CancelConf.as_view()),
 
-    url(r'^meeting/detail/?$', MeetingDetail.as_view()),
-    url(r'^meeting/detail/pay?$', payDetail.as_view()),
+    url(r'^meeting?$', MeetingDetail.as_view()),
+    url(r'^meeting/pay?$', payDetail.as_view()),
 ]

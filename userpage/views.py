@@ -13,35 +13,40 @@ import json
 class JoinConf(APIView):
     def get(self):
 
-    	self.check_input('user_id', 'confid', 'type')
-    	result = joinconf(self.input['user_id'], self.input['confid'], self.input['type'])
-    	return result
+        
+        url = "http://60.205.137.139/adminweb/REST/API-V2/confInfo?confid=" + self.input['confid']
+        req = urllib.request.urlopen(url)
+        content = req.read().decode('utf-8')
+        datas = json.loads(content)
+        type = datas['data']['detail']['privateType']
+        result = joinconf(self.input['user_id'], self.input['confid'], type)
+        return result
 
 
-	def joinconf(userid, confid, type, code):
-		urlvalue = urllib.parse.urlencode({"userid": userid, "confid": confid, "type": type, "code": code})
-		postdata = ("").encode('utf-8')
-		url = "http://60.205.137.139/adminweb/REST/APT-V2/joinConf?" + urlvalue
-		request = urllib.request.Request(url.postdata)
-		response = urllib.request.urlopen(request)
-		s = response.read().decode('utf-8')
-		res = json.loads(s)
-		return res
+def joinconf(userid, confid, type):
+    urlvalue = urllib.parse.urlencode({"userid": userid, "confid": confid, "type": type})
+    postdata = ("").encode('utf-8')
+    url = "http://60.205.137.139/adminweb/REST/API-V2/joinConf?" + urlvalue
+    request = urllib.request.Request(url, postdata)
+    response = urllib.request.urlopen(request)
+    s = response.read().decode('utf-8')
+    res = json.loads(s)
+    return res
 
 class CancelConf(APIView):
-	def get(self):
-		result = cancelConf(self.input['user_id'], self.input['confid'])
-		return result
-
-	def cancelConf():
-		urlvalue = urllib.parse.urlencode({"userid": userid, "confid": confid})
-		postdata = ("").encode('utf-8')
-		url = "http://60.205.137.139/adminweb/REST/APT-V2/cancelConf?" + urlvalue
-		request = urllib.request.Request(url.postdata)
-		response = urllib.request.urlopen(request)
-		s = response.read().decode('utf-8')
-		res = json.loads(s)
-		return res
+    def get(self):
+        result = cancelConf(self.input['user_id'], self.input['confid'])
+        return result
+    
+def cancelConf(userid, confid):
+    urlvalue = urllib.parse.urlencode({"userid": userid, "confid": confid})
+    postdata = ("").encode('utf-8')
+    url = "http://60.205.137.139/adminweb/REST/API-V2/cancelConf?" + urlvalue
+    request = urllib.request.Request(url, postdata)
+    response = urllib.request.urlopen(request)
+    s = response.read().decode('utf-8')
+    res = json.loads(s)
+    return res
 
 class payDetail(APIView):
     def get(self):
@@ -83,6 +88,7 @@ class MeetingDetail(APIView):
             'weibo':weibo,
             'desc':desc,
             'type':type,
+            'id':self.input['confid'],
             'userid':self.input['user_id'],
         }
         return(test)

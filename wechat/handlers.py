@@ -286,13 +286,13 @@ class confRemindHandler(WeChatHandler):
             if len(conflist['data']) == 0:
                 return self.reply_text("没有与您相关的会议，不需要提醒")
             for i in range(0, total_size):
-                for j in (0, i):
+                for j in (0, i-1):
                     if conflist['data'][i]['start_date'] < conflist['data'][j]['start_date']:
                         temp = conflist['data'][i]
                         conflist['data'][i] = conflist['data'][j]
                         conflist['data'][j] = temp
             for i in range(0, total_size):
-                if conflist['data'][i]['start_date'] > timeStr:
+                # if conflist['data'][i]['start_date'] > timeStr:
                     result = result + "你的会议" + conflist['data'][i]['name'] + "将于" + conflist['data'][i]['start_date'] + "在" + conflist['data'][i]['location'] + "召开"
                     if i != total_size - 1:
                         result = result + '\n\n'

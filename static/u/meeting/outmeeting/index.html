@@ -61,7 +61,7 @@
 </div>
 <div class="paybody">
 	<div class = "jiang"></div>    
-	<a href = "/u/meeting?confid={{conf.id}}&userid={{conf.userid}}&in=0">
+	<a href = "/u/meeting/index.html?confid={{conf.id}}&userid={{conf.userid}}&in=0">
 		<div class="bluetext" align = "center">点此返回界面</div>
 	</a>
 </div>
@@ -83,8 +83,10 @@
     };
     $(function () {
         render();
-        api.get('/api/u/meeting/detail/outmeeting', {confid: urlParam.confid, user_id: urlParam.userid}, function (data) { 
+        api.get('/api/u/meeting/outmeeting', {confid: urlParam.confid, user_id: urlParam.userid}, function (data) { 
 			locals.conf = data;	
+            locals.conf.id=urlParam.confid;
+            locals.conf.userid=urlParam.userid;
             render();
         }, dftFail);
     });	
