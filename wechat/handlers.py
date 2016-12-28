@@ -6,6 +6,9 @@ import json
 from wechat.models import UserLogin
 from urllib.parse import quote
 
+import datetime
+import time
+
 __author__ = "Epsirom"
 
 global currpage
@@ -265,3 +268,37 @@ class favoriteConfListHandler(WeChatHandler):
             return self.reply_text("请先绑定")
 
 
+class confRemindHandler(WeChatHandler):
+    def check(self):
+        return self.is_text('提醒') or self.is_event_click(self.view.event_keys['remind'])
+
+    def handle(self):
+        user = UserLogin.objects.filter(unionId = self.input['FromUserName'])
+        if user:
+            url = 'http://60.205.137.139/adminweb/REST/API-V2/favoriteConfList?userid='  +str(user[0].user_id)+  '&page=1&page_size=3'
+            req = urllib.request.urlopen(url)
+            content = req.read().decode('utf-8')
+            conflist = json.loads(content)
+            total_size = conflist['total_size']
+            mtime = time.localtime(int(self.input['CreateTime']))
+            timeStr=time.strftime("%Y-%m-%d", mtime)
+            result = ""
+            if len(conflist['data']) == 0:
+                return self.reply_text("没有与您相关的会议，不需要提醒")
+            for i in range(0, total_size):
+                for j in (0, i):
+                    if conflist['data'][i]['start_date'] < conflist['data'][j]['start_date']:
+                        temp = conflist['data'][i]
+                        conflist['data'][i] = conflist['data'][j]
+                        conflist['data'][j] = temp
+            for i in range(0, total_size):
+                if conflist['data'][i]['start_date'] > timeStr:
+                    result = result + "你的会议" + conflist['data'][i]['name'] + "将于" + conflist['data'][i]['start_date'] + "在" + conflist['data'][i]['location'] + "召开"
+                    if i != total_size - 1:
+                        result = result + '\n\n'
+            if result == "":
+                return self.reply_text("你近期没有会议")
+            else:
+                return self.reply_text(result)
+        else:
+            return self.reply_text("请先绑定")

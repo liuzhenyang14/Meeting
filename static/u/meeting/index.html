@@ -38,7 +38,7 @@
 <div class="navbar navbar-app navbar-absolute-top blueback">      
 	<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
 	{%if conf.inconf == 0%}
-	<a class="whitetext" {%if conf.type == 3%}href="meeting/pay?confid={{conf.id}}"
+	<a class="whitetext" {%if conf.mytype == 3%}href="meeting/pay?confid={{conf.id}}"
 		{%else%}href="meeting/paysucess?confid={{conf.id}}"{%endif%}>加入会议&nbsp;</a>
 	{%else%}
 	<a class="whitetext" href=""}>退出会议&nbsp;</a>
