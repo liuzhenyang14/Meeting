@@ -61,7 +61,7 @@
 </div>
 <div class="paybody">
 	<div class = "jiang"></div>    
-	<a href = "/u/meeting?confid={{conf.id}}">
+	<a href = "/u/meeting?confid={{conf.id}}&userid={{conf.user_id}}">
 		<div class="bluetext" align = "center">点此返回界面</div>
 	</a>
 </div>
@@ -83,7 +83,7 @@
     };
     $(function () {
         render();
-        api.get('/api/u/meeting/detail/paysucess', {paysucess: "True", confid: urlParam.confid}, function (data) { 
+        api.get('/api/u/meeting/detail/paysucess', {paysucess: "True", confid: urlParam.confid, user_id: urlParam.userid}, function (data) { 
 			locals.conf = data;	
             render();
         }, dftFail);

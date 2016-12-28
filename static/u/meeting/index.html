@@ -38,8 +38,8 @@
 <div class="navbar navbar-app navbar-absolute-top blueback">      
 	<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
 	{%if conf.inconf == 0%}
-	<a class="whitetext" {%if conf.type == 3%}href="meeting/pay?confid={{conf.id}}"
-		{%else%}href="meeting/paysucess?confid={{conf.id}}"{%endif%}>加入会议&nbsp;</a>
+	<a class="whitetext" {%if conf.type == 3%}href="meeting/pay?confid={{conf.id}}&userid={{conf.user_id}}"
+		{%else%}href="meeting/paysucess?confid={{conf.id}}&userid={{conf.user_id}}"{%endif%}>加入会议&nbsp;</a>
 	{%else%}
 	<a class="whitetext" href=""}>退出会议&nbsp;</a>
 	{%endif%}
@@ -112,10 +112,9 @@
     };
     $(function () {
         render();
-        api.get('/api/u/meeting/detail', {confid: urlParam.confid}, function (data) {
+        api.get('/api/u/meeting/detail', {confid: urlParam.confid, user_id: urlParam.userid}, function (data) {
             locals.conf = data;		
-			locals.conf.desc = data.desc;
-			console.log(data.desc);	
+			locals.conf.desc = data.desc;	
             render();
         }, dftFail);
     });	

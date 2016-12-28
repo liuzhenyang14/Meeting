@@ -81,7 +81,7 @@
 		<p></p>		
     </div>	
     <div class="navbar blueback navbar-brand bord_radius">      
-		<a href = "paysucess?confid={{conf.id}}"><div class="whitetext" align = "center">缴费成功</div></a>
+		<a href = "paysucess?confid={{conf.id}}&userid={{conf.user_id}}"><div class="whitetext" align = "center">缴费成功</div></a>
 	</div>
 </div>
 </script>
@@ -102,7 +102,7 @@
     };
     $(function () {
         render();
-        api.get('/api/u/meeting/detail/pay', {confid: urlParam.confid}, function (data) { 
+        api.get('/api/u/meeting/detail/pay', {confid: urlParam.confid, user_id: urlParam.userid}, function (data) { 
             locals.conf = data;					
             render();
         }, dftFail);
