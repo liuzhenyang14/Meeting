@@ -31,7 +31,7 @@ class MeetingDetail(APIView):
         test = {
             'name': name,
             'address': address,
-            'start_date': start_date,
+            'date': start_date,
             'image':'http://60.205.137.139/adminweb/'+image,
             'web':web,
             'phone':phone,
