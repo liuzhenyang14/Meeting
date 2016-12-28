@@ -10,7 +10,7 @@ from urllib.request import urlopen
 import time
 import json
 
-class JoinConf(APIView)
+class JoinConf(APIView):
     def post(self):
     	self.check_input('user_id', 'confid', 'type', 'code')
     	result = joinconf(self.input['user_id'], self.input['confid'], self.input['type'], self.input['code'])
