@@ -104,7 +104,7 @@ class GetAllConfListHandler(WeChatHandler):
                         'Title': conflist['data'][i]['name'],
                         'PicUrl': 'http://60.205.137.139/adminweb/' + conflist['data'][i]['image'],
                         # 'Url': 'http://m2.huiplus.com.cn/app/#/confinfo/'+str(conflist['data'][i]['id'])
-                        'Url': 'http://183.172.88.129/u/meeting/index.html?confid=' + str(conflist['data'][i]['id']) + '&userid=' + str(user[0].user_id)
+                        'Url': 'http://59.66.138.67/u/meeting/index.html?confid=' + str(conflist['data'][i]['id']) + '&userid=' + str(user[0].user_id)
                     })
                 result.append({
                     'Title': '输入“显示更多”，查看更多会议'
