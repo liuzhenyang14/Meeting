@@ -2,6 +2,8 @@ from codex.baseerror import *
 from codex.baseview import APIView
 
 from wechat.models import UserLogin
+from wechat.models import ConfBasic
+from wechat.models import InConf
 
 import urllib
 import urllib.parse
@@ -20,6 +22,7 @@ class JoinConf(APIView):
         datas = json.loads(content)
         type = datas['data']['detail']['privateType']
         result = joinconf(self.input['user_id'], self.input['confid'], type)
+        InConf.objects.create(user_id=self.input['user_id'], confid=self.input['confid'])
         return result
 
 
@@ -36,6 +39,7 @@ def joinconf(userid, confid, type):
 class CancelConf(APIView):
     def get(self):
         result = cancelConf(self.input['user_id'], self.input['confid'])
+        InConf.objects.filter(user_id=self.input['user_id'], confid=self.input['confid']).delete()
         return result
     
 def cancelConf(userid, confid):
@@ -73,7 +77,9 @@ class MeetingDetail(APIView):
         qq = datas['data']['detail']['qq']
         weibo = datas['data']['detail']['weibo']
         desc = datas['data']['detail']['desc']
-        type = datas['data']['detail']['privateType']
+        t = datas['data']['detail']['privateType']
+        inconf = len(InConf.objects.filter(user_id=self.input['user_id'], confid=self.input['confid']))
+        print(inconf)
         test = {
             'name': name,
             'address': address,
@@ -87,8 +93,9 @@ class MeetingDetail(APIView):
             'qq':qq,
             'weibo':weibo,
             'desc':desc,
-            'type':type,
+            'type':t,
             'id':self.input['confid'],
             'userid':self.input['user_id'],
+            'inconf': inconf,
         }
         return(test)

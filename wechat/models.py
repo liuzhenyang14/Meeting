@@ -2,23 +2,21 @@ from django.db import models
 
 from codex.baseerror import LogicError
 
-class UserLogin(models.Model):
-    user_id = models.IntegerField()
-    email = models.CharField(max_length=256, blank=True, null=True)
-    unionId = models.CharField(max_length=256)
+
+
 
 class ConfBasic(models.Model):
     confbasic_id = models.IntegerField()
     name = models.CharField(max_length=128)
-    start_date = models.DateTimeField(db_index=True)
-    end_date = models.DateTimeField(db_index=True)
-    location = models.CharField(max_length=256)
+    start_date = models.DateTimeField(db_index=True, null=True)
+    end_date = models.DateTimeField(db_index=True, null=True)
+    location = models.CharField(max_length=256, null=True)
     image = models.CharField(max_length=256)
-    version = models.IntegerField()
-    private_type = models.IntegerField()
+    version = models.IntegerField(null=True)
+    private_type = models.IntegerField(null=True)
     color = models.CharField(max_length=64)
     sequence = models.CharField(max_length=256)
-    status = models.IntegerField()
+    status = models.IntegerField(null=True)
 
     TYPE_PUBLIC = 0
     TYPE_PRIVATE = 1
@@ -29,6 +27,15 @@ class ConfBasic(models.Model):
     STATUS_PUBLISHED = 3
     STATUS_FILE = 4
     STATUS_END = 9
+
+class UserLogin(models.Model):
+    user_id = models.IntegerField()
+    email = models.CharField(max_length=256, blank=True, null=True)
+    unionId = models.CharField(max_length=256)
+    
+class InConf(models.Model):
+    user_id = models.IntegerField()
+    confid = models.IntegerField() 
 
 class ConfDetail(models.Model):
     confid = models.IntegerField()
